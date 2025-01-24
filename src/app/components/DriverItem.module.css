@@ -1,0 +1,41 @@
+.driverItem {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Make sure it takes full width of its container */
+}
+
+.driverName {
+    flex: 2;
+    text-align: left;
+}
+
+.vehicleReg {
+    flex: 1;
+    text-align: left;
+}
+
+.activityDuration {
+    flex: 2;
+    text-align: left;
+}
+
+
+.weeklyGrid {
+    flex: 3;
+    display: flex;
+    justify-content: space-around;
+    gap: 5px;
+}
+
+
+.dayBox {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.activeDay {
+    background-color: #4CAF50; /* Green color */
+    border: none;
+}

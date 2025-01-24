@@ -1,0 +1,12 @@
+.searchBox {
+    margin-bottom: 20px;
+}
+
+.searchInput {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Take full width of the container */
+    max-width: 300px; /* Maximum width if needed */
+    font-size: 1em;
+}

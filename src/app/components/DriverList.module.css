@@ -1,0 +1,71 @@
+.driverListContainer {
+    padding: 20px;
+}
+
+.driverList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    overflow: hidden; /* to prevent border-radius from being clipped by content */
+    background-color: white;
+}
+
+.driverListHeader, .driverListItem {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.driverListHeader {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.driverListItem:last-child {
+    border-bottom: none; /* Remove border from the last item */
+}
+
+.driverNameHeader, .driverName {
+    flex: 2; /* Adjust as needed for wider/narrower columns */
+    text-align: left;
+}
+
+.vehicleRegHeader, .vehicleReg {
+    flex: 1;
+    text-align: left;
+}
+
+.activityDurationHeader, .activityDuration {
+    flex: 2;
+    text-align: left;
+}
+
+.weeklyGridHeader, .weeklyGrid {
+    flex: 3;
+    display: flex;
+    justify-content: space-around; /* Distribute space evenly */
+    gap: 5px; /* Spacing between day headers/boxes */
+}
+
+.dayHeader {
+    width: 20px;
+    text-align: center;
+    font-size: 0.8em;
+    color: #555;
+}
+
+
+.dayBox {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Ensure padding and border are included in element's total width and height */
+}
+
+.activeDay {
+    background-color: #4CAF50; /* Green color */
+    border: none;
+}
