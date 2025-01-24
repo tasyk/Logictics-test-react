@@ -23,6 +23,7 @@ const DriverList: React.FC<DriverListProps> = ({ drivers }) => {
     }, [drivers, searchTerm]);
 
     return (
+        <div>        
         <div className={styles.driverListContainer}>
             <SearchBox onSearchChange={setSearchTerm} placeholder="Search for Driver" />
             <ul className={styles.driverList}>
@@ -46,6 +47,7 @@ const DriverList: React.FC<DriverListProps> = ({ drivers }) => {
                     </li>
                 ))}
             </ul>
+        </div>
         </div>
     );
 };

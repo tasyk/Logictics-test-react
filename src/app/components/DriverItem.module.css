@@ -1,9 +1,9 @@
 .driverItem {
     display: flex;
     align-items: center;
-    width: 100%; /* Make sure it takes full width of its container */
+    width: 100%; 
+    justify-content: center;
 }
-
 .driverName {
     flex: 2;
     text-align: left;
@@ -21,7 +21,7 @@
 
 
 .weeklyGrid {
-    flex: 3;
+    
     display: flex;
     justify-content: space-around;
     gap: 5px;
@@ -33,6 +33,7 @@
     height: 20px;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    margin: 10px;
 }
 
 .activeDay {

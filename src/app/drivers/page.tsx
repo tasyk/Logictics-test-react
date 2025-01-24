@@ -1,10 +1,10 @@
 "use client"; 
 
 import React, { useState, useEffect } from 'react';
-import DriverList from './components/DriverList';
+import DriverList from '../components/DriverList';
 
-import driverData from './data/drivers.json';
-import styles from '/styles/Home.module.css';
+import driverData from '../data/drivers.json';
+import styles from '../styles/Home.module.css';
 
 const HomePage: React.FC = () => {
     const [drivers, setDrivers] = useState<Driver[]>([]);
@@ -15,9 +15,8 @@ const HomePage: React.FC = () => {
     }, []);
 
     return (
-        <div>
-            Home page content
-        </div>
+
+                    <DriverList drivers={drivers} />
     )
 };
 
