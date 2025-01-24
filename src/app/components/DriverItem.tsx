@@ -4,10 +4,10 @@ import styles from './DriverItem.module.css';
 interface DriverItemProps {
     driver: Driver;
 }
-
 const DriverItem: React.FC<DriverItemProps> = ({ driver }) => {
-    const weeklyActivities = calculateWeeklyActivityTimes(driver);
-    const weeklyActivityDays = getWeeklyActivityDays(driver);
+    const weekStartDateStr = '2021-02-01'; // This can be dynamically set as needed
+    const weeklyActivities = calculateWeeklyActivityTimes(driver, weekStartDateStr);
+    const weeklyActivityDays = getWeeklyActivityDays(driver, weekStartDateStr);
     const totalActivityTime = Object.values(weeklyActivities).reduce((sum, duration) => sum + duration, 0);
 
     return (
@@ -33,8 +33,20 @@ const DriverItem: React.FC<DriverItemProps> = ({ driver }) => {
     );
 };
 
-// Helper function to calculate weekly activity times
-const calculateWeeklyActivityTimes = (driver: Driver) => {
+const getWeeklyActivityDays = (driver: Driver, weekStartDateStr: string) => {
+    const daysActivity = Array(7).fill(false);
+    if (driver.traces) {
+        driver.traces.forEach(trace => {
+            if (isDateInWeek(trace.date, weekStartDateStr)) {
+                const dayIndex = getDayOfWeek(trace.date, weekStartDateStr);
+                daysActivity[dayIndex] = true;
+            }
+        });
+    }
+    return daysActivity;
+};
+
+const calculateWeeklyActivityTimes = (driver: Driver, weekStartDateStr: string) => {
     const weeklyActivities: { [type: string]: number } = {
         drive: 0,
         work: 0,
@@ -43,7 +55,7 @@ const calculateWeeklyActivityTimes = (driver: Driver) => {
     };
     if (driver.traces) {
         driver.traces.forEach(trace => {
-            if (isDateInWeek(trace.date)) {
+            if (isDateInWeek(trace.date, weekStartDateStr)) {
                 trace.activity.forEach(activity => {
                     weeklyActivities[activity.type] = (weeklyActivities[activity.type] || 0) + activity.duration;
                 });
@@ -53,36 +65,22 @@ const calculateWeeklyActivityTimes = (driver: Driver) => {
     return weeklyActivities;
 };
 
-// Helper function to get weekly activity days
-const getWeeklyActivityDays = (driver: Driver) => {
-    const daysActivity = Array(7).fill(false);
-    if (driver.traces) {
-        driver.traces.forEach(trace => {
-            if (isDateInWeek(trace.date)) {
-                const dayIndex = getDayOfWeek(trace.date);
-                daysActivity[dayIndex] = true;
-            }
-        });
-    }
-    return daysActivity;
-};
-
-
-// Helper function to check if a date is within the week 1/2/2021 - 7/2/2021
-const isDateInWeek = (dateStr: string): boolean => {
+// Helper function to check if a date is within a given week
+const isDateInWeek = (dateStr: string, weekStartDateStr: string): boolean => {
     const date = new Date(dateStr);
-    const weekStartDate = new Date('2021-02-01');
-    const weekEndDate = new Date('2021-02-07');
+    const weekStartDate = new Date(weekStartDateStr);
+    const weekEndDate = new Date(weekStartDate);
+    weekEndDate.setDate(weekEndDate.getDate() + 6);
     return date >= weekStartDate && date <= weekEndDate;
 };
 
-// Helper function to get the day of the week (0-6) for the week starting 2021-02-01
-const getDayOfWeek = (dateStr: string): number => {
+// Helper function to get the day of the week (0-6) for a given week start date
+const getDayOfWeek = (dateStr: string, weekStartDateStr: string): number => {
     const date = new Date(dateStr);
-    const weekStartDate = new Date('2021-02-01');
+    const weekStartDate = new Date(weekStartDateStr);
     const diffTime = Math.abs(date.getTime() - weekStartDate.getTime());
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays; // day index 0 for 2021-02-01, 1 for 2021-02-02, ..., 6 for 2021-02-07
+    return diffDays; // day index 0 for weekStartDate, 1 for the next day, ..., 6 for the last day of the week
 };
 
 

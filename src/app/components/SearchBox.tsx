@@ -4,6 +4,7 @@ import styles from './SearchBox.module.css';
 
 interface SearchBoxProps {
     onSearchChange: (searchTerm: string) => void;
+    placeholder: string;
 }
 
 const SearchBox: React.FC<SearchBoxProps> = ({ onSearchChange }) => {
