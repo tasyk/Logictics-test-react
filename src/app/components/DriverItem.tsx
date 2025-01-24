@@ -13,9 +13,9 @@ const DriverItem: React.FC<DriverItemProps> = ({ driver }) => {
     return (
         <div className={styles.driverItem}>
             <div className={styles.driverInfo}>
-                <h3>{driver.forename} {driver.surname}</h3>
-                <p>Vehicle: {driver.vehicleRegistration}</p>
+                <h3>{driver.forename} {driver.surname}</h3>                
             </div>
+            <div>{driver.vehicleRegistration}</div>
             <div className={styles.activitySummary}>
                 <p>Total Activity Time: {totalActivityTime} minutes</p>
                 <div className={styles.activityBreakdown}>

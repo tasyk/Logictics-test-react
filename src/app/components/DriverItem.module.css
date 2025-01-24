@@ -1,8 +1,8 @@
 .driverItem {
     display: flex;
     align-items: center;
-    width: 100%; 
-    justify-content: center;
+    padding: 15px 20px;
+    justify-content: space-between;
 }
 .driverName {
     flex: 2;
@@ -39,4 +39,7 @@
 .activeDay {
     background-color: #4CAF50; /* Green color */
     border: none;
+}
+.driverInfo {
+   min-width: 20%;
 }

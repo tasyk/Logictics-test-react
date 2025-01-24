@@ -26,8 +26,8 @@ const DriverList: React.FC<DriverListProps> = ({ drivers }) => {
         <div>        
         <div className={styles.driverListContainer}>
             <SearchBox onSearchChange={setSearchTerm} placeholder="Search for Driver" />
-            <ul className={styles.driverList}>
-                <li className={styles.driverListHeader}>
+            <div className={styles.driverList}>
+                <div className={styles.driverListItem}>
                     <div className={styles.driverNameHeader}>Driver Name</div>
                     <div className={styles.vehicleRegHeader}>Vehicle Reg</div>
                     <div className={styles.activityDurationHeader}>Total Activity Duration</div>
@@ -40,13 +40,11 @@ const DriverList: React.FC<DriverListProps> = ({ drivers }) => {
                         <div className={styles.dayHeader}>Sat</div>
                         <div className={styles.dayHeader}>Sun</div>
                     </div>
-                </li>
+                </div>
                 {filteredDrivers.map(driver => (
-                    <li key={driver.driverID} className={styles.driverListItem}>
-                        <DriverItem driver={driver} />
-                    </li>
+                    <DriverItem driver={driver} />
                 ))}
-            </ul>
+            </div>
         </div>
         </div>
     );
